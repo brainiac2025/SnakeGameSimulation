@@ -94,6 +94,7 @@ public class BoardPanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics g){
+        String score="YOUR SCORE "+ " "+dotz;
         String message="GAME OVER";
         Font font= new Font("Ariel", Font.BOLD, 14);
         FontMetrics metrics =getFontMetrics(font);
@@ -101,6 +102,9 @@ public class BoardPanel extends JPanel implements ActionListener {
         g.setColor(Color.RED);
         g.setFont(font);
         g.drawString(message, (300-metrics.stringWidth(message)) / 2, 300/2);
+
+        g.drawString(score, (300-metrics.stringWidth(score))/2, (300/2)+30);
+
     }
 
     public void moveAction(){
@@ -131,6 +135,47 @@ public class BoardPanel extends JPanel implements ActionListener {
         super.paintComponent(g);
         draw(g);
     }
+
+    public void level(){
+
+        if(dotz==6 && dotz<8){
+            timing.setDelay(130);
+
+        } else if (dotz==8 && dotz <10) {
+            timing.setDelay(120);
+        }
+        else if (dotz==10 && dotz <11) {
+            timing.setDelay(110);
+        }
+        else if (dotz==12 && dotz <13) {
+            timing.setDelay(100);
+
+        }
+        else if (dotz==14 && dotz <15) {
+            timing.setDelay(90);
+
+        }
+        else if (dotz==16 && dotz <17) {
+            timing.setDelay(80);
+
+        }
+        else if (dotz==18 && dotz <19) {
+            timing.setDelay(70);
+
+        }
+
+        else if (dotz==20 && dotz <21) {
+            timing.setDelay(60);
+
+        }
+
+        else if (dotz==22 && dotz <23) {
+            timing.setDelay(50);
+
+        }
+
+    }
+
     public void checkingCollision(){
         for(int i=dotz; i>0; i--){
             if((i>4) && x[0]==x[i] && (y[0]==y[i])){
@@ -159,6 +204,7 @@ public class BoardPanel extends JPanel implements ActionListener {
             checkAppleEaten();
             checkingCollision();
             moveAction();
+            level();
         }
         repaint();
     }
